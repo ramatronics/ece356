@@ -2,18 +2,18 @@
 /* Lab 2 - part 1- Add tables for supplies used by projects */
 
 /* replace xxxxx with your user id */
-USE ece356db_xxxxx; 
+USE ece356db_mrmohame;
 
 
-DROP TABLE IF EXISTS SupplyData;  
+DROP TABLE IF EXISTS SupplyData;
 
-         
+
 CREATE TABLE SupplyData(supplyID INT,
 supplyDescription VARCHAR(100),
 unitDescription VARCHAR(100),
-costPerunit DECIMAL(8,2), 
+costPerunit DECIMAL(8,2),
 typeID INT,
-typeDescription VARCHAR(100) ); 
+typeDescription VARCHAR(100) );
 
 
 INSERT INTO SupplyData VALUES (100,'Big WallCalendar',
@@ -42,74 +42,54 @@ INSERT INTO SupplyData VALUES (107,'Bleach',
 '5.38 L', 2.50, 2, 'Cleaning Supplies');
 
 
-/* Normalize table SupplyData. 
+/* Normalize table SupplyData.
 We will need two tables to remove multiple
 functional dependency */
 
 
-DROP TABLE IF EXISTS SupplyType;  
-         
+DROP TABLE IF EXISTS SupplyType;
+
 CREATE TABLE SupplyType(typeID INT,
-typeDescription VARCHAR(100)); 
+typeDescription VARCHAR(100));
 
 
 
 DROP TABLE IF EXISTS Supply;
-         
+
 CREATE TABLE Supply(supplyID INT,
 supplyDescription VARCHAR(100),
 unitDescription VARCHAR(100),
-costPerunit DECIMAL(8,2), 
-typeID INT); 
+costPerunit DECIMAL(8,2),
+typeID INT);
 
 
-/* Write INSERT staments to add the data stored in 
+/* Write INSERT staments to add the data stored in
 table SupplyData into the new tables
--  SupplyType  -  Supply 
+-  SupplyType  -  Supply
 
 Note:  use INSERT INTO (SELECT .. FROM SupplyData)
 */
 
+INSERT INTO SupplyType (supplyTypeID, description)
+    (SELECT DISTINCT typeID, typeDescription FROM SupplyData);
 
+INSERT INTO Supply (SupplyID, supplyDescription, unitDescription, costPerunit, typeID)
+    (SELECT SupplyID, supplyDescription, unitDescription, costPerunit, typeID FROM SupplyData);
 
-
-/* Create table ProjectSupply, used associate pojects with supplies. These table store a count of the number of supplies involved in the association. 
+/* Create table ProjectSupply, used associate pojects with supplies. These table store a count of the number of supplies involved in the association.
 
 ie. projectID 123 uses 10  Laptop computers  (supplyID 103)
 
 
 */
+DROP TABLE IF EXISTS ProjectSupply;
 
-
-
+CREATE TABLE ProjectSupply (projectID INT,
+                            supplyID INT,
+                            quantity INT);
 
 /* Insert data into the table ProjectSupply */
 
-
-
-
-
-
-
-
-         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                   
-          
-
-
+INSERT INTO ProjectSupply VALUES (123, 10, 103);
+INSERT INTO ProjectSupply VALUES (345, 2, 104);
+INSERT INTO ProjectSupply VALUES (345, 15, 101);
