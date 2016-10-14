@@ -85,6 +85,12 @@ INSERT INTO SupplyType (typeDescription) VALUES ("testing");
 /* Add here statements to create your ProjectSupply table ( from your solution to part 1), adding primary key and foreign key constrains. */
 
 
+CREATE TABLE ProjectSupply(projectID INT,
+supplyID INT, supplyCount Int);
+Alter Table ProjectSupply Add Primary Key (projectID, supplyID);
+Alter Table ProjectSupply Add Foreign Key (supplyID) references Supply(supplyID);
+Alter Table ProjectSupply Add Foreign Key (projectID) references Project(projID);
+
 /* Reinsert data into all tables
 
 You can use the INSERT statements provided in createTables.sql, and in  your solution for part1 (in your modified part1.sql)
