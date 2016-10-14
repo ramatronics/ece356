@@ -8,7 +8,7 @@ USE ece356db_mrmohame;
 DROP TABLE IF EXISTS SupplyData;
 
 
-CREATE TABLE SupplyData(SupplyID INT,
+CREATE TABLE SupplyData(supplyID INT,
 supplyDescription VARCHAR(100),
 unitDescription VARCHAR(100),
 costPerunit DECIMAL(8,2),
@@ -49,8 +49,10 @@ functional dependency */
 
 DROP TABLE IF EXISTS SupplyType;
 
-CREATE TABLE SupplyType(supplyTypeID INT,
-description VARCHAR(100));
+CREATE TABLE SupplyType(typeID INT,
+typeDescription VARCHAR(100));
+
+
 
 DROP TABLE IF EXISTS Supply;
 
@@ -64,6 +66,7 @@ typeID INT);
 /* Write INSERT staments to add the data stored in
 table SupplyData into the new tables
 -  SupplyType  -  Supply
+
 Note:  use INSERT INTO (SELECT .. FROM SupplyData)
 */
 INSERT INTO SupplyType (Select distinct typeID, typeDescription  FROM SupplyData);
@@ -72,15 +75,16 @@ INSERT INTO Supply (Select supplyID, supplyDescription, unitDescription, costPer
 
 
 /* Create table ProjectSupply, used associate pojects with supplies. These table store a count of the number of supplies involved in the association.
-ie. projectID 123 uses 10  Laptop computers  (supplyID 103)
-*/
-DROP TABLE IF EXISTS ProjectSupply;
 
+ie. projectID 123 uses 10  Laptop computers  (supplyID 103)
+
+
+*/
 CREATE TABLE ProjectSupply(projectID INT,
 supplyID INT, supplyCount Int);
+
+/* Insert data into the table ProjectSupply */
 
 INSERT INTO ProjectSupply Values(123, 103, 10);
 INSERT INTO ProjectSupply Values(345, 104, 2);
 INSERT INTO ProjectSupply Values(345, 101, 15);
-
-/* Insert data into the table ProjectSupply */
