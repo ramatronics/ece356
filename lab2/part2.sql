@@ -138,7 +138,7 @@ INSERT INTO SupplyData VALUES (106,'Trash Cans',
 INSERT INTO SupplyData VALUES (107,'Bleach',
 '5.38 L', 2.50, 2, 'Cleaning Supplies');
 
-INSERT INTO SupplyType (typeID, description)
+INSERT INTO SupplyType (typeID, typeDescription)
     (SELECT DISTINCT typeID, typeDescription FROM SupplyData);
 INSERT INTO Supply (SupplyID, supplyDescription, unitDescription, costPerunit, typeID)
     (SELECT SupplyID, supplyDescription, unitDescription, costPerunit, typeID FROM SupplyData);
