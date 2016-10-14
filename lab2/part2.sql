@@ -48,7 +48,7 @@ CREATE TABLE Project(projID INT PRIMARY KEY,
 DROP TABLE IF EXISTS Assigned;
 CREATE TABLE Assigned(empID INT,
                       projID INT,
-                      role VARCHAR(100)
+                      role VARCHAR(100),
                       CONSTRAINT pk_assigned PRIMARY KEY(empID, projID));
 
 ALTER TABLE Assigned DROP FOREIGN KEY a_f_projId;
