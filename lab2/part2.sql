@@ -31,8 +31,86 @@ foreign key (deptID) references Department(deptID) );
 
 USE ece356db_mrmohame;
 
+DROP TABLE IF EXISTS Assigned;
+CREATE TABLE Assigned(empID INT,projID INT,role VARCHAR(100));
+
+DROP TABLE IF EXISTS Department;
+CREATE TABLE Department(deptID INT ,deptName VARCHAR(100),location VARCHAR(100));
+
+DROP TABLE IF EXISTS Employee;
+CREATE TABLE Employee(empID INT,empName VARCHAR(100),job VARCHAR(100),deptID INT,salary INT);
+
+
+
+DROP TABLE IF EXISTS ProjectSupply;
+
+CREATE TABLE ProjectSupply(projectID INT,
+supplyID INT, supplyCount Int);
+
+
+DROP TABLE IF EXISTS Project;
+CREATE TABLE Project(projID INT,title VARCHAR(100),budget INT,funds INT);
+
+Alter Table Department Add Primary Key(deptID);
+Alter Table Employee Add Primary Key(empID);
+Alter Table Project Add Primary Key (projID);
+
+
+-- For the Assigned table, you need ti specify a
+-- primary key that includes two columns
+
+Alter Table Assigned Add Primary Key(empID, projID);
+Alter Table Assigned Add Foreign Key (empID) references Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE;
+Alter Table Assigned Add Foreign Key (projID) references Project(projID)ON DELETE CASCADE ON UPDATE CASCADE;
+
+/* Tables created in lab 2 */
+
+DROP TABLE IF EXISTS Supply;
+
+CREATE TABLE Supply(supplyID INT,
+supplyDescription VARCHAR(100),
+unitDescription VARCHAR(100),
+costPerunit DECIMAL(8,2),
+typeID INT
+);
+
+DROP TABLE IF EXISTS SupplyType;
+
+CREATE TABLE SupplyType(supplyTypeID INT,
+description VARCHAR(100));
+
+
+Alter Table SupplyType Add Primary Key (supplyTypeID);
+Alter Table Supply Add Primary Key (supplyID);
+Alter Table Supply Add Foreign Key (typeID) references SupplyType(supplyTypeID);
+
+
+/* Add here statements to create your ProjectSupply table ( from your solution to part 1), adding primary key and foreign key constrains. */
+
+
+Alter Table ProjectSupply Add Primary Key (projectID, supplyID);
+Alter Table ProjectSupply Add Foreign Key (supplyID) references Supply(supplyID);
+--show index from SupplyType;
+/* Reinsert data into all tables
+You can use the INSERT statements provided in createTables.sql, and in  your solution for part1 (in your modified part1.sql)
+Bonus: Practice using the MySQL autoincrement feature when inserting data into a table.
+*/
+
+ALTER TABLE Employee MODIFY COLUMN empID INT auto_increment;
+/*
+DROP TABLE IF EXISTS Assigned;
+CREATE TABLE Assigned(empID INT,projID INT,role VARCHAR(100));
+
 DROP TABLE IF EXISTS Department;
 CREATE TABLE Department(deptID INT,deptName VARCHAR(100),location VARCHAR(100));
+
+DROP TABLE IF EXISTS Employee;
+CREATE TABLE Employee(empID INT,empName VARCHAR(100),job VARCHAR(100),deptID INT,salary INT);
+
+DROP TABLE IF EXISTS Project;
+CREATE TABLE Project(projID INT,title VARCHAR(100),budget INT,funds INT);
+*/
+
 
 INSERT INTO Department(deptID, deptName, location) VALUES(3, 'marketing', 'Waterloo');
 INSERT INTO Department(deptID, deptName, location) VALUES(7, 'research', 'Guelph');
@@ -41,128 +119,35 @@ INSERT INTO Department(deptID, deptName, location) VALUES(13, 'computing', 'Toro
 
 
 
-DROP TABLE IF EXISTS Employee;
-CREATE TABLE Employee(empID INT,empName VARCHAR(100),job VARCHAR(100),deptID INT,salary INT,
-						primary key (empID));
-
-INSERT INTO Employee(empID, empName, job, deptID, salary) VALUES(23, 'Smith', 'programmer', 12, 35000);
-INSERT INTO Employee(empID, empName, job, deptID, salary) VALUES(45, 'Kelly', 'engineer', 7, 37000);
-INSERT INTO Employee(empID, empName, job, deptID, salary) VALUES(56, 'Herr', 'janitor', 7, 26000);
-INSERT INTO Employee(empID, empName, job, deptID, salary) VALUES(89, 'Williams', 'analyst', 12, 36000);
-INSERT INTO Employee(empID, empName, job, deptID, salary) VALUES(77, 'Hergot', 'secretary', 7, 28000);
-INSERT INTO Employee(empID, empName, job, deptID, salary) VALUES(66, 'Hess', 'technician', 7, 32000);
-INSERT INTO Employee(empID, empName, job, deptID, salary) VALUES(92, 'Mays', 'engineer', 7, 45000);
-INSERT INTO Employee(empID, empName, job, deptID, salary) VALUES(68, 'Morris', 'secretary', 3, 23000);
-INSERT INTO Employee(empID, empName, job, deptID, salary) VALUES(69, 'Maria', 'engineer', 3, 32000);
+INSERT INTO Employee(empName, job, deptID, salary) VALUES('Smith', 'programmer', 12, 35000);
+INSERT INTO Employee(empName, job, deptID, salary) VALUES('Kelly', 'engineer', 7, 37000);
+INSERT INTO Employee(empName, job, deptID, salary) VALUES('Herr', 'janitor', 7, 26000);
+INSERT INTO Employee(empName, job, deptID, salary) VALUES('Williams', 'analyst', 12, 36000);
+INSERT INTO Employee(empName, job, deptID, salary) VALUES('Hergot', 'secretary', 7, 28000);
+INSERT INTO Employee(empName, job, deptID, salary) VALUES('Hess', 'technician', 7, 32000);
+INSERT INTO Employee(empName, job, deptID, salary) VALUES('Mays', 'engineer', 7, 45000);
+INSERT INTO Employee(empName, job, deptID, salary) VALUES('Morris', 'secretary', 3, 23000);
+INSERT INTO Employee(empName, job, deptID, salary) VALUES('Maria', 'engineer', 3, 32000);
 
 
--- For the Assigned table, you need ti specify a
--- primary key that includes two columns
-DROP TABLE IF EXISTS Project;
-CREATE TABLE Project(projID INT,title VARCHAR(100),budget INT,funds INT,
-						primary key (projID));
 
 INSERT INTO Project(projID, title, budget, funds) VALUES(345, 'compiler', 500000, 250000);
 INSERT INTO Project(projID, title, budget, funds) VALUES(123, 'display', 650000, 370000);
 
 
-DROP TABLE IF EXISTS Assigned;
-CREATE TABLE Assigned(empID INT,projID INT,role VARCHAR(100),
-
-
-						foreign key (empID)
-						references employee (empID)
-						on delete cascade,
-
-						foreign key (projID)
-						references project (projID)
-						on delete cascade);
-
-INSERT INTO Assigned(empID, projID, role) VALUES(23, 345, 'programmer');
-INSERT INTO Assigned(empID, projID, role) VALUES(23, 123, 'programmer');
-INSERT INTO Assigned(empID, projID, role) VALUES(66, 123, 'programmer');
-INSERT INTO Assigned(empID, projID, role) VALUES(77, 123, 'secretary');
-INSERT INTO Assigned(empID, projID, role) VALUES(45, 123, 'manager');
-INSERT INTO Assigned(empID, projID, role) VALUES(89, 345, 'manager');
-INSERT INTO Assigned(empID, projID, role) VALUES(92, 123, 'engineer');
+INSERT INTO Assigned(empID, projID, role) VALUES(1, 345, 'programmer');
+INSERT INTO Assigned(empID, projID, role) VALUES(1, 123, 'programmer');
+INSERT INTO Assigned(empID, projID, role) VALUES(6, 123, 'programmer');
+INSERT INTO Assigned(empID, projID, role) VALUES(5, 123, 'secretary');
+INSERT INTO Assigned(empID, projID, role) VALUES(2, 123, 'manager');
+INSERT INTO Assigned(empID, projID, role) VALUES(4, 345, 'manager');
+INSERT INTO Assigned(empID, projID, role) VALUES(7, 123, 'engineer');
 
 
 
-/* Tables created in lab 2 */
+INSERT INTO SupplyType (Select distinct typeID, typeDescription  FROM SupplyData);
+INSERT INTO Supply (Select supplyID, supplyDescription, unitDescription, costPerUnit, typeID FROM SupplyData);
 
-
-DROP TABLE IF EXISTS SupplyData;
-
-
-CREATE TABLE SupplyData(supplyID INT,
-supplyDescription VARCHAR(100),
-unitDescription VARCHAR(100),
-costPerunit DECIMAL(8,2),
-typeID INT,
-typeDescription VARCHAR(100) );
-
-
-INSERT INTO SupplyData VALUES (100,'Big WallCalendar',
-'Item', 30.00, 1, 'Office Supplies');
-
-INSERT INTO SupplyData VALUES (101,'Colour Stickers',
-'1 Sheet of 10', 5.50, 1, 'Office Supplies');
-
-INSERT INTO SupplyData VALUES (102,'Printer Paper',
-'8.5 inches  x 11 inches 500 sheets', 20.50, 1, 'Office Supplies');
-
-INSERT INTO SupplyData VALUES (103,'Laptop computer',
-'Item', 1000.00, 1, 'Office Supplies');
-
-
-INSERT INTO SupplyData VALUES (104,'Vacum',
-'Item', 1000.00, 2, 'Cleaning Supplies');
-
-INSERT INTO SupplyData VALUES (105,'Displosable Gloves',
-'One pair', 10.00, 2, 'Cleaning Supplies');
-
-INSERT INTO SupplyData VALUES (106,'Trash Cans',
-'Item', 20.00, 2, 'Cleaning Supplies');
-
-INSERT INTO SupplyData VALUES (107,'Bleach',
-'5.38 L', 2.50, 2, 'Cleaning Supplies');
-
-
-DROP TABLE IF EXISTS SupplyType;
-
-CREATE TABLE SupplyType(typeID INT,
-typeDescription VARCHAR(100),
-primary key (typeID)
-);
-INSERT INTO SupplyType (typeID, typeDescription)
-SELECT DISTINCT typeID, typeDescription
-FROM SupplyData;
-
-DROP TABLE IF EXISTS Supply;
-
-CREATE TABLE Supply(supplyID INT,
-supplyDescription VARCHAR(100),
-unitDescription VARCHAR(100),
-costPerunit DECIMAL(8,2),
-typeID INT,
-primary key (supplyID),
-
-foreign key (typeID)
-references supplyType(typeID)
-on delete cascade
-);
-INSERT INTO Supply (supplyID, supplyDescription, unitDescription, costPerunit, typeID)
-SELECT supplyID, supplyDescription, unitDescription, costPerunit, typeID
-FROM SupplyData;
-
-DROP TABLE IF EXISTS ProjectSupply;
-CREATE TABLE ProjectSupply(projectID INT, uses INT, item VARCHAR(100), supplyID INT,
-							foreign key (supplyID)
-							references supply(supplyID)
-							on delete cascade,
-							primary key(projectID, supplyID)
-							);
-
-INSERT INTO ProjectSupply VALUES(123,10,'Laptop Computers', 103);
-INSERT INTO ProjectSupply VALUES(345,2,'Vacums', 104);
-INSERT INTO ProjectSupply VALUES(345,15,'Colour Stickers', 101);
+INSERT INTO ProjectSupply Values(123, 103, 10);
+INSERT INTO ProjectSupply Values(345, 104, 2);
+INSERT INTO ProjectSupply Values(345, 101, 15);
