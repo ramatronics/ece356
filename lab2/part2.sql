@@ -81,7 +81,6 @@ INSERT INTO SupplyType (typeDescription) VALUES ("testing");
 
 
 
-
 /* Add here statements to create your ProjectSupply table ( from your solution to part 1), adding primary key and foreign key constrains. */
 
 
