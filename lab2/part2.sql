@@ -32,10 +32,10 @@ foreign key (deptID) references Department(deptID) );
 USE ece356db_mrmohame;
 
 DROP TABLE IF EXISTS Department;
-CREATE TABLE Department(deptID INT,deptName VARCHAR(100),location VARCHAR(100));
+CREATE TABLE Department(deptID INT PRIMARY KEY,deptName VARCHAR(100),location VARCHAR(100));
 
 DROP TABLE IF EXISTS Employee;
-CREATE TABLE Employee(empID INT,empName VARCHAR(100),job VARCHAR(100),deptID INT,salary INT);
+CREATE TABLE Employee(empID INT PRIMARY KEY ,empName VARCHAR(100),job VARCHAR(100),deptID INT,salary INT);
 
 DROP TABLE IF EXISTS Project;
 CREATE TABLE Project(projID INT PRIMARY KEY,
@@ -46,26 +46,34 @@ CREATE TABLE Project(projID INT PRIMARY KEY,
 -- For the Assigned table, you need ti specify a
 -- primary key that includes two columns
 DROP TABLE IF EXISTS Assigned;
-CREATE TABLE Assigned(empID INT PRIMARY KEY,
+CREATE TABLE Assigned(empID INT,
                       projID INT,
-                      role VARCHAR(100));
-                      /*
-                      FOREIGN KEY (projID)
-                        REFERENCES Project(projID),
-                      FOREIGN KEY (empID)
-                        REFERENCES Employee(empID));
-                      */
+                      role VARCHAR(100)
+                      CONSTRAINT pk_assigned PRIMARY KEY(empID, projID));
+
+ALTER TABLE Assigned DROP FOREIGN KEY a_f_projId;
+ALTER TABLE Assigned
+  ADD CONSTRAINT a_f_projId
+  FOREIGN KEY (projID)
+  REFERENCES Project(projID);
+
+
+ALTER TABLE Assigned DROP FOREIGN KEY a_f_empId;
+ALTER TABLE Assigned
+  ADD CONSTRAINT a_f_empId
+  FOREIGN KEY (empID)
+  REFERENCES Employee(empID);
 
 /* Tables created in lab 2 */
 
 DROP TABLE IF EXISTS SupplyType;
 
-CREATE TABLE SupplyType(typeID INT,
+CREATE TABLE SupplyType(typeID INT PRIMARY KEY,
 typeDescription VARCHAR(100));
 
 DROP TABLE IF EXISTS Supply;
 
-CREATE TABLE Supply(supplyID INT,
+CREATE TABLE Supply(supplyID INT PRIMARY KEY,
 supplyDescription VARCHAR(100),
 unitDescription VARCHAR(100),
 costPerunit DECIMAL(8,2),
@@ -79,10 +87,19 @@ DROP TABLE IF EXISTS ProjectSupply;
 CREATE TABLE ProjectSupply (projectID INT,
                             supplyID INT,
                             quantity INT);
-                            /*
-                            FOREIGN KEY (projectID) REFERENCES Project(projID),
-                            FOREIGN KEY (supplyID) REFERENCES Supply(supplyID));
-                            */
+
+ALTER TABLE Assigned DROP FOREIGN KEY ps_f_projId;
+ALTER TABLE Assigned
+  ADD CONSTRAINT ps_f_projId
+  FOREIGN KEY (projectID)
+  REFERENCES Project(projectID);
+
+
+ALTER TABLE Assigned DROP FOREIGN KEY ps_f_supplyId;
+ALTER TABLE Assigned
+  ADD CONSTRAINT ps_f_supplyId
+  FOREIGN KEY (supplyID)
+  REFERENCES Supply(supplyID);
 
 /* Reinsert data into all tables
    You can use the INSERT statements provided in createTables.sql, and in  your solution for part1 (in your modified part1.sql)
