@@ -66,7 +66,6 @@ table SupplyData into the new tables
 -  SupplyType  -  Supply
 Note:  use INSERT INTO (SELECT .. FROM SupplyData)
 */
---select * from Supply;
 INSERT INTO SupplyType (Select distinct typeID, typeDescription  FROM SupplyData);
 INSERT INTO Supply (Select supplyID, supplyDescription, unitDescription, costPerUnit, typeID FROM SupplyData);
 
