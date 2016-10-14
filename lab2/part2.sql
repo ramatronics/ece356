@@ -78,10 +78,11 @@ typeID INT
 DROP TABLE IF EXISTS ProjectSupply;
 CREATE TABLE ProjectSupply (projectID INT,
                             supplyID INT,
-                            quantity INT,
+                            quantity INT);
+                            /*
                             FOREIGN KEY (projectID) REFERENCES Project(projID),
                             FOREIGN KEY (supplyID) REFERENCES Supply(supplyID));
-
+                            */
 
 /* Reinsert data into all tables
    You can use the INSERT statements provided in createTables.sql, and in  your solution for part1 (in your modified part1.sql)
@@ -112,14 +113,6 @@ INSERT INTO Assigned(empID, projID, role) VALUES(45, 123, 'manager');
 INSERT INTO Assigned(empID, projID, role) VALUES(89, 345, 'manager');
 INSERT INTO Assigned(empID, projID, role) VALUES(92, 123, 'engineer');
 
-CREATE TABLE SupplyData(supplyID INT,
-supplyDescription VARCHAR(100),
-unitDescription VARCHAR(100),
-costPerunit DECIMAL(8,2),
-typeID INT,
-typeDescription VARCHAR(100) );
-
-
 INSERT INTO SupplyData VALUES (100,'Big WallCalendar',
 'Item', 30.00, 1, 'Office Supplies');
 
@@ -145,7 +138,7 @@ INSERT INTO SupplyData VALUES (106,'Trash Cans',
 INSERT INTO SupplyData VALUES (107,'Bleach',
 '5.38 L', 2.50, 2, 'Cleaning Supplies');
 
-INSERT INTO SupplyType (supplyTypeID, description)
+INSERT INTO SupplyType (typeID, description)
     (SELECT DISTINCT typeID, typeDescription FROM SupplyData);
 INSERT INTO Supply (SupplyID, supplyDescription, unitDescription, costPerunit, typeID)
     (SELECT SupplyID, supplyDescription, unitDescription, costPerunit, typeID FROM SupplyData);
