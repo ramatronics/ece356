@@ -34,15 +34,15 @@ USE ece356db_mrmohame;
 
 DROP TABLE IF EXISTS Employee;
 DROP TABLE IF EXISTS Department;
-CREATE TABLE Department(deptID INT,deptName VARCHAR(100),location VARCHAR(100));
+CREATE TABLE Department(deptID INT PRIMARY KEY,deptName VARCHAR(100),location VARCHAR(100));
 ALTER TABLE Department ADD PRIMARY KEY(deptID);
 
 DROP TABLE IF EXISTS Employee;
-CREATE TABLE Employee(empID INT,empName VARCHAR(100),job VARCHAR(100),deptID INT,salary INT);
+CREATE TABLE Employee(empID INT PRIMARY KEY,empName VARCHAR(100),job VARCHAR(100),deptID INT,salary INT);
 ALTER TABLE Employee ADD FOREIGN KEY(deptID) REFERENCES Department(deptID);
 
 DROP TABLE IF EXISTS Project;
-CREATE TABLE Project(projID INT,title VARCHAR(100),budget INT,funds INT);
+CREATE TABLE Project(projID INT PRIMARY KEY, title VARCHAR(100),budget INT,funds INT);
 
 -- For the Assigned table, you need ti specify a
 -- primary key that includes two columns
