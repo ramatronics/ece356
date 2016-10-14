@@ -68,12 +68,12 @@ ALTER TABLE Assigned
 
 DROP TABLE IF EXISTS SupplyType;
 
-CREATE TABLE SupplyType(typeID INT PRIMARY KEY,
+CREATE TABLE SupplyType(typeID INT,
 typeDescription VARCHAR(100));
 
 DROP TABLE IF EXISTS Supply;
 
-CREATE TABLE Supply(supplyID INT PRIMARY KEY,
+CREATE TABLE Supply(supplyID INT,
 supplyDescription VARCHAR(100),
 unitDescription VARCHAR(100),
 costPerunit DECIMAL(8,2),
@@ -88,15 +88,15 @@ CREATE TABLE ProjectSupply (projectID INT,
                             supplyID INT,
                             quantity INT);
 
-ALTER TABLE Assigned DROP FOREIGN KEY ps_f_projId;
-ALTER TABLE Assigned
+ALTER TABLE ProjectSupply DROP FOREIGN KEY ps_f_projId;
+ALTER TABLE ProjectSupply
   ADD CONSTRAINT ps_f_projId
   FOREIGN KEY (projectID)
   REFERENCES Project(projectID);
 
 
-ALTER TABLE Assigned DROP FOREIGN KEY ps_f_supplyId;
-ALTER TABLE Assigned
+ALTER TABLE ProjectSupply DROP FOREIGN KEY ps_f_supplyId;
+ALTER TABLE ProjectSupply
   ADD CONSTRAINT ps_f_supplyId
   FOREIGN KEY (supplyID)
   REFERENCES Supply(supplyID);
