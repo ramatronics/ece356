@@ -48,11 +48,13 @@ CREATE TABLE Project(projID INT PRIMARY KEY,
 DROP TABLE IF EXISTS Assigned;
 CREATE TABLE Assigned(empID INT PRIMARY KEY,
                       projID INT,
-                      role VARCHAR(100),
+                      role VARCHAR(100));
+                      /*
                       FOREIGN KEY (projID)
                         REFERENCES Project(projID),
                       FOREIGN KEY (empID)
                         REFERENCES Employee(empID));
+                      */
 
 /* Tables created in lab 2 */
 
@@ -85,7 +87,6 @@ CREATE TABLE ProjectSupply (projectID INT,
    You can use the INSERT statements provided in createTables.sql, and in  your solution for part1 (in your modified part1.sql)
 */
 
-----------------------------------------------------------------------------------------------------
 INSERT INTO Department(deptID, deptName, location) VALUES(3, 'marketing', 'Waterloo');
 INSERT INTO Department(deptID, deptName, location) VALUES(7, 'research', 'Guelph');
 INSERT INTO Department(deptID, deptName, location) VALUES(12, 'software', 'Toronto');
@@ -111,7 +112,6 @@ INSERT INTO Assigned(empID, projID, role) VALUES(45, 123, 'manager');
 INSERT INTO Assigned(empID, projID, role) VALUES(89, 345, 'manager');
 INSERT INTO Assigned(empID, projID, role) VALUES(92, 123, 'engineer');
 
-----------------------------------------------------------------------------------------------------
 CREATE TABLE SupplyData(supplyID INT,
 supplyDescription VARCHAR(100),
 unitDescription VARCHAR(100),
