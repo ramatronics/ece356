@@ -37,6 +37,12 @@ CREATE TABLE Department(deptID INT,deptName VARCHAR(100),location VARCHAR(100));
 DROP TABLE IF EXISTS Employee;
 CREATE TABLE Employee(empID INT,empName VARCHAR(100),job VARCHAR(100),deptID INT,salary INT);
 
+DROP TABLE IF EXISTS Project;
+CREATE TABLE Project(projID INT PRIMARY KEY,
+                     title VARCHAR(100),
+                     budget INT,
+                     funds INT);
+
 -- For the Assigned table, you need ti specify a
 -- primary key that includes two columns
 DROP TABLE IF EXISTS Assigned;
@@ -47,13 +53,6 @@ CREATE TABLE Assigned(empID INT PRIMARY KEY,
                         REFERENCES Project(projID),
                       FOREIGN KEY (empID)
                         REFERENCES Employee(empID));
-
-DROP TABLE IF EXISTS Project;
-CREATE TABLE Project(projID INT PRIMARY KEY,
-                     title VARCHAR(100),
-                     budget INT,
-                     funds INT);
-
 
 /* Tables created in lab 2 */
 
