@@ -24,12 +24,9 @@ procedure_body: BEGIN
     END IF;
 
     SET pIncrease = inPercentage / 100;
-
     SET raised = raised * pIncrease + raised;
 
-    UPDATE  Employee
-    SET     salary = raised
-    WHERE   empID = inEmpID;
+    UPDATE Employee SET salary = raised WHERE empID = inEmpID;
 
     SET errorCode = 0;
 END;$
