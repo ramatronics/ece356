@@ -18,3 +18,11 @@ Query OK, 1 row affected (0.00 sec)
 |  41625 |
 +--------+
 1 row in set (0.00 sec)
+
+mysql> SELECT * FROM Employee where empID = 45;
++-------+---------+----------+--------+--------+
+| empID | empName | job      | deptID | salary |
++-------+---------+----------+--------+--------+
+|    45 | Kelly   | engineer |      7 |  41625 |
++-------+---------+----------+--------+--------+
+1 row in set (0.00 sec)

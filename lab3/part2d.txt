@@ -1,0 +1,40 @@
+mysql> source part2c.sql;
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
++--------+
+| @error |
++--------+
+|     -1 |
++--------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
++--------+
+| @error |
++--------+
+|     -2 |
++--------+
+1 row in set (0.00 sec)
+
+Empty set (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
++--------+
+| @error |
++--------+
+|      0 |
++--------+
+1 row in set (0.00 sec)
+
++--------+
+| salary |
++--------+
+|  27600 |
++--------+
+1 row in set (0.00 sec)
