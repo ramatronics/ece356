@@ -8,16 +8,16 @@ empLabel: BEGIN
     IF (inPercentage > 100.00 OR inPercentage < 0.00) THEN
         SET errorCode = -1;
         LEAVE empLabel;
-    Elseif not exists(select * from Employee where empID = inEmpID) then 
+    Elseif not exists(select * from Employee where empID = inEmpID) then
         SET errorCode = -2;
-        LEAVE empLabel; 
+        LEAVE empLabel;
     Else
         SET errorCode = 0;
-        Update Employee 
+        Update Employee
         SET salary = salary + salary*inPercentage/100
         Where empID = inEmpID;
     End If;
 
-    
+
 END @@
 DELIMITER ;
