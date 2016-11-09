@@ -19,10 +19,7 @@ END;
 START TRANSACTION;
     SET errorCode = 0;
 
-
-    Update Project
-    SET funds = funds - amount
-    Where projID = fromProject;
+    Update Project SET funds = funds - amount WHERE projID = fromProject;
 
     IF row_count() = 0 THEN
         SET errorCode = -1;
@@ -32,10 +29,7 @@ START TRANSACTION;
         ROLLBACK;
     END IF;
 
-
-    Update Project
-    SET funds = funds + amount
-    Where projID = toProject;
+    UPDATE Project SET funds = funds + amount WHERE projID = toProject;
 
     IF row_count() = 0 THEN
         SET errorCode = -1;
