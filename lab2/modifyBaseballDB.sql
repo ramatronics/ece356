@@ -1,0 +1,20 @@
+ALTER TABLE CollegePlaying ADD FOREIGN KEY (schoolID) REFERENCES Schools(SchoolID);
+ALTER TABLE CollegePlaying ADD FOREIGN KEY (playerID) REFERENCES Masters(playerID);
+
+ALTER TABLE AllstarFull ADD FOREIGN KEY (teamID) REFERENCES Teams(teamID);
+
+ALTER TABLE BattingPost ADD FOREIGN KEY (teamID) REFERENCES Teams(teamID);
+
+ALTER TABLE Batting ADD FOREIGN KEY (teamID) REFERENCES Teams(teamID);
+
+ALTER TABLE Managers ADD FOREIGN KEY (playerID) REFERENCES Teams(playerID);
+
+ALTER TABLE Pitching ADD FOREIGN KEY (teamID) REFERENCES Teams(teamID);
+
+ALTER TABLE Fielding ADD FOREIGN KEY (teamID) REFERENCES Teams(teamID);
+ALTER TABLE FieldingPost ADD FOREIGN KEY (teamID) REFERENCES Teams(teamID);
+
+ALTER TABLE SeriesPost ADD FOREIGN KEY (teamIDWinner) REFERENCES Teams(teamID);
+ALTER TABLE SeriesPost ADD FOREIGN KEY (teamIDLoser) REFERENCES Teams(teamID);
+
+ALTER TABLE Teams ADD FOREIGN KEY (franchID) REFERENCES TeamsFranchises(franchID);
