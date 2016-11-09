@@ -1,4 +1,4 @@
-EXPLAIN SELECT * FROM employee
+EXPLAIN SELECT * FROM Employee
 			WHERE salary >= 30000 AND salary <= 40000;
 
 EXPLAIN SELECT d.deptid,
@@ -8,6 +8,6 @@ EXPLAIN SELECT d.deptid,
 		    e.empname,
 		    e.job,
 		    e.salary
-		FROM department d
-			LEFT JOIN employee e
+		FROM Department d
+			LEFT JOIN Employee e
 			ON d.deptid = e.deptid;

@@ -1,8 +1,7 @@
-CREATE INDEX salary_idx on Employee(salary) using BTREE;
-CREATE INDEX dept_idx on Employee(deptID) using HASH;
+CREATE INDEX salary_idx on Employee(salary) USING BTREE;
+CREATE INDEX dept_idx on Employee(deptID) USING HASH;
 
-SELECT * FROM employee
-	WHERE salary >= 30000 AND salary <= 40000;
+SELECT * FROM Employee WHERE salary >= 30000 AND salary <= 40000;
 
 SELECT d.deptid,
     d.deptname,
@@ -11,6 +10,6 @@ SELECT d.deptid,
     e.empname,
     e.job,
     e.salary
-FROM department d
-	LEFT JOIN employee e
+FROM Department d
+	LEFT JOIN Employee e
 	ON d.deptid = e.deptid;
