@@ -1,4 +1,4 @@
-SET autocommit=0;
+SET autocommit=1;
 
 SELECT salary FROM Employee WHERE empID = 66;
 
