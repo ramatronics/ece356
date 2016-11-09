@@ -52,3 +52,13 @@ mysql> EXPLAIN SELECT d.deptid,
 |  1 | SIMPLE      | e     | NULL       | ref  | dept_idx      | dept_idx | 5       | ece356db_mrmohame.d.deptID |  337 |   100.00 | NULL  |
 +----+-------------+-------+------------+------+---------------+----------+---------+----------------------------+------+----------+-------+
 2 rows in set, 1 warning (0.00 sec)
+
+Rows:
+     Concerning the range, an index is added to the salary using the BTREE type. This improved the table as the number of rows accessed went from 1011 to 1 row. However, in the join opeation we already have a reference key and primary key already exist as an index. This limits the improvement as it has already been made, indexing additional attributes has no affect.
+
+Indexes chosen:
+    Before adding the indexes, only one index in the Employee table, empID existed as the primary key. When our search was based on range, empID did not help so it was not used. After adding an index on the salary of the table, it looked at the index and made the following search based on it.
+    For the join operation, indexes already existed when the foreign key relationship was added. After dept_idx was created it looked at the index that was added, but it was just a rename of the previous key, hence not filtering out the table any more.
+
+Joining Operation:
+    The join order had the department table created first followed by the employee table.
