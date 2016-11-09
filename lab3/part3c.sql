@@ -1,45 +1,49 @@
 DROP PROCEDURE IF EXISTS transfer_funds;
 
-DELIMITER $
-CREATE PROCEDURE transfer_funds
-(
-    IN  fromProject INT,
-    IN  toProject INT,
-    IN  amount DOUBLE(10,2),
+DELIMITER @@
+DROP PROCEDURE IF EXISTS transfer_funds @@
+Create PROCEDURE transfer_funds
+(   IN fromProject INT,
+    IN toProject INT,
+    IN amount DOUBLE(10,2),
     OUT errorCode INT
 )
-procedure_body: BEGIN
-    DECLARE originalFund INT;
+BEGIN
 
-    START TRANSACTION;
+DECLARE EXIT HANDLER FOR SQLEXCEPTION
+BEGIN
+    SET errorCode = -1;
+    ROLLBACK;
+END;
 
-    SELECT funds INTO originalFund FROM Project WHERE projID = fromProject;
+START TRANSACTION;
+    SET errorCode = 0;
 
-    IF ROW_COUNT() <= 0 THEN
-        SET errorCode = -2;
-        ROLLBACK;
-        LEAVE procedure_body;
-    END IF;
 
-    SELECT funds FROM Project WHERE projID = toProject;
+    Update Project
+    SET funds = funds - amount
+    Where projID = fromProject;
 
-    IF ROW_COUNT() <= 0 THEN
-        SET errorCode = -2;
-        ROLLBACK;
-        LEAVE procedure_body;
-    END IF;
-
-    IF originalFund < amount THEN
+    IF row_count() = 0 THEN
         SET errorCode = -1;
         ROLLBACK;
-        LEAVE procedure_body;
+    elseIF (Select funds from Project where projID = fromProject) < 0 THEN
+        SET errorCode = -2;
+        ROLLBACK;
     END IF;
 
-    UPDATE Project SET funds = funds + amount WHERE projID = toProject;
-    UPDATE Project SET funds = funds - amount WHERE projID = fromProject;
 
-    COMMIT;
-END;$
+    Update Project
+    SET funds = funds + amount
+    Where projID = toProject;
+
+    IF row_count() = 0 THEN
+        SET errorCode = -1;
+        ROLLBACK;
+    END IF;
+
+COMMIT;
+END @@
 DELIMITER ;
 
 SELECT * FROM Project;
