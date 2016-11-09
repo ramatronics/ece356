@@ -10,7 +10,7 @@
 SET default_storage_engine=MEMORY;
 
 /* replace xxxxx with your user id */
-USE ece356db_xxxxx; 
+USE ece356db_mrmohame; 
 
 
 /* Add primary key and foreing key constrains for Employee and Department */
