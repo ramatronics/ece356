@@ -1,0 +1,245 @@
+
+SET NAMES 'UTF8';
+
+DELETE FROM AllstarFull;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/AllstarFull.csv'
+INTO TABLE AllstarFull
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM Appearances;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/Appearances.csv'
+INTO TABLE Appearances
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM AwardsManagers;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/AwardsManagers.csv'
+INTO TABLE AwardsManagers
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM AwardsPlayers;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/AwardsPlayers.csv'
+INTO TABLE AwardsPlayers
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM AwardsShareManagers;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/AwardsShareManagers.csv'
+INTO TABLE AwardsShareManagers
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM AwardsSharePlayers;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/AwardsSharePlayers.csv'
+INTO TABLE AwardsSharePlayers
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM Batting;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/Batting.csv'
+INTO TABLE Batting
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM BattingPost;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/BattingPost.csv'
+INTO TABLE BattingPost
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM CollegePlaying;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/CollegePlaying.csv'
+INTO TABLE CollegePlaying
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM Fielding;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/Fielding.csv'
+INTO TABLE Fielding
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM FieldingOF;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/FieldingOF.csv'
+INTO TABLE FieldingOF
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM FieldingPost;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/FieldingPost.csv'
+INTO TABLE FieldingPost
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM HallOfFame;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/HallOfFame.csv'
+INTO TABLE HallOfFame
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM Managers;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/Managers.csv'
+INTO TABLE Managers
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM ManagersHalf;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/ManagersHalf.csv'
+INTO TABLE ManagersHalf
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM Master;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/Master.csv'
+INTO TABLE Master
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM Pitching;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/Pitching.csv'
+INTO TABLE Pitching
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM PitchingPost;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/PitchingPost.csv'
+INTO TABLE PitchingPost
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM Salaries;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/Salaries.csv'
+INTO TABLE Salaries
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM Schools;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/Schools.csv'
+INTO TABLE Schools
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM SeriesPost;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/SeriesPost.csv'
+INTO TABLE SeriesPost
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM Teams;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/Teams.csv'
+INTO TABLE Teams
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM TeamsFranchise;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/TeamsFranchise.csv'
+INTO TABLE TeamsFranchise
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+DELETE FROM TeamsHalf;
+
+LOAD DATA LOCAL INFILE '/Users/ramie/dev/school/ece356/lab4/csv/TeamsHalf.csv'
+INTO TABLE TeamsHalf
+CHARACTER SET 'UTF8'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+SET default_storage_engine=MYISAM;
+SET bulk_insert_buffer_size = 1024*1024*50;
